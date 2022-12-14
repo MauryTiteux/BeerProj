@@ -30,7 +30,7 @@ create table Database_Bieres.Bieres (
 	IBU int(11),
 	EBC int(11),
 	PresentationBie Mediumtext,
-	Ingredients text default'Eau, Malt, Houblon, Levures.',
+	Ingredients text,
 	PhotoBie VARCHAR(255),
 	codeBarre INT(25),
 	ForBieID int(11),
@@ -115,3 +115,35 @@ Add FOREIGN KEY (ForBieID) REFERENCES FormatsBieres (BieForID) ON DELETE RESTRIC
 -- Ajout foreign Key entre BieresBrasseries et Bieres
 ALTER TABLE DataBase_Bieres.Bieres
 ADD FOREIGN KEY (BrasseriesID) REFERENCES BieresBrasseries (BrasseriesId) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- Création table UtilisateurBieres (lien entre utilisateur et bières)
+CREATE TABLE Database_Bieres.UtilisateurBieres (
+    IdUtil int(11) auto_increment primary KEY Not Null,
+	IdBieres Int(11),
+	NombresBue Int(6) NULL DEFAULT NULL,
+	Note Int(2),
+	Commentaire MEDIUMTEXT,
+	FirstDrink TIME NULL DEFAULT NULL,
+	LastDrink TIME NULL DEFAULT NULL,
+ 	Fav BINARY DEFAULT '0',
+	FOREIGN KEY (IdBieres) REFERENCES Bieres(ID) ON DELETE RESTRICT ON UPDATE CASCADE
+
+);
+
+-- Création table Utilisateur
+CREATE TABLE Database_Bieres.Utilisateur (
+	IdUtil int(11) auto_increment primary KEY Not Null,
+  	Pseudo Varchar(25),
+  	Mail Varchar(255),
+ 	Mdp Varchar(255),
+  	RoleId int(11),
+  	Token Int,
+	FOREIGN KEY (IdUtil) REFERENCES UtilisateurBieres(IdUtil) ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- Création table Role
+CREATE TABLE Database_Bieres.Role (
+	id int(11) auto_increment primary KEY Not Null,
+	role Varchar(20) NULL DEFAULT NULL,
+	FOREIGN KEY (Id) REFERENCES Utilisateur(RoleId) ON DELETE RESTRICT ON UPDATE CASCADE
+);

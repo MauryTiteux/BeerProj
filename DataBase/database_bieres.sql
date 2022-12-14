@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le : ven. 29 oct. 2021 à 20:52
--- Version du serveur : 10.4.21-MariaDB
--- Version de PHP : 8.0.10
+-- Hôte : 127.0.0.1:3306
+-- Généré le : mer. 14 déc. 2022 à 18:18
+-- Version du serveur : 5.7.36
+-- Version de PHP : 7.4.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `database_bieres`
 --
+CREATE DATABASE IF NOT EXISTS `database_bieres` DEFAULT CHARACTER SET latin1 COLLATE latin1_general_cs;
+USE `database_bieres`;
 
 -- --------------------------------------------------------
 
@@ -27,24 +29,32 @@ SET time_zone = "+00:00";
 -- Structure de la table `bieres`
 --
 
-CREATE TABLE `bieres` (
-  `ID` int(11) NOT NULL,
-  `NomBie` varchar(25) NOT NULL,
+DROP TABLE IF EXISTS `bieres`;
+CREATE TABLE IF NOT EXISTS `bieres` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NomBie` varchar(25) COLLATE latin1_general_cs NOT NULL,
   `BrasseriesID` int(11) DEFAULT NULL,
   `CatBieID` int(11) DEFAULT NULL,
   `StyBieID` int(11) DEFAULT NULL,
   `Alc` int(11) DEFAULT NULL,
   `IBU` int(11) DEFAULT NULL,
   `EBC` int(11) DEFAULT NULL,
-  `PresentationBie` mediumtext DEFAULT NULL,
-  `Ingredients` text DEFAULT 'Eau, Malt, Houblon, Levures.',
-  `PhotoBie` varchar(255) DEFAULT NULL,
+  `PresentationBie` mediumtext COLLATE latin1_general_cs,
+  `Ingredients` text COLLATE latin1_general_cs,
+  `PhotoBie` varchar(255) COLLATE latin1_general_cs DEFAULT NULL,
   `codeBarre` int(25) DEFAULT NULL,
   `ForBieID` int(11) DEFAULT NULL,
   `TypVerBieID` int(11) DEFAULT NULL,
   `DateCreaBie` year(4) DEFAULT NULL,
-  `DateAjoutBie` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `DateAjoutBie` datetime DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `DateAjoutBie` (`DateAjoutBie`),
+  KEY `CatBieID` (`CatBieID`),
+  KEY `StyBieID` (`StyBieID`),
+  KEY `TypVerBieID` (`TypVerBieID`),
+  KEY `ForBieID` (`ForBieID`),
+  KEY `BrasseriesID` (`BrasseriesID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
 
 -- --------------------------------------------------------
 
@@ -52,10 +62,13 @@ CREATE TABLE `bieres` (
 -- Structure de la table `bieresbrasseries`
 --
 
-CREATE TABLE `bieresbrasseries` (
+DROP TABLE IF EXISTS `bieresbrasseries`;
+CREATE TABLE IF NOT EXISTS `bieresbrasseries` (
   `BrasseriesID` int(11) NOT NULL,
-  `BieresID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `BieresID` int(11) NOT NULL,
+  PRIMARY KEY (`BrasseriesID`),
+  KEY `BieresID` (`BieresID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
 
 -- --------------------------------------------------------
 
@@ -63,22 +76,29 @@ CREATE TABLE `bieresbrasseries` (
 -- Structure de la table `brasseries`
 --
 
-CREATE TABLE `brasseries` (
-  `IDBra` int(11) NOT NULL,
-  `NomBra` varchar(25) NOT NULL,
+DROP TABLE IF EXISTS `brasseries`;
+CREATE TABLE IF NOT EXISTS `brasseries` (
+  `IDBra` int(11) NOT NULL AUTO_INCREMENT,
+  `NomBra` varchar(25) COLLATE latin1_general_cs NOT NULL,
   `typBraID` int(11) DEFAULT NULL,
-  `Adresse` varchar(255) DEFAULT NULL,
+  `Adresse` varchar(255) COLLATE latin1_general_cs DEFAULT NULL,
   `CPBraID` int(11) DEFAULT NULL,
   `PayBraID` int(11) DEFAULT NULL,
-  `SiteWeb` text DEFAULT NULL,
-  `Facebook` text DEFAULT NULL,
-  `Instagram` text DEFAULT NULL,
+  `SiteWeb` text COLLATE latin1_general_cs,
+  `Facebook` text COLLATE latin1_general_cs,
+  `Instagram` text COLLATE latin1_general_cs,
   `DateCreaBra` datetime DEFAULT NULL,
-  `Logo` text DEFAULT NULL,
-  `PresentationBra` mediumtext DEFAULT NULL,
+  `Logo` text COLLATE latin1_general_cs,
+  `PresentationBra` mediumtext COLLATE latin1_general_cs,
   `StaBraID` int(11) DEFAULT NULL,
-  `DateAjoutBra` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `DateAjoutBra` datetime DEFAULT NULL,
+  PRIMARY KEY (`IDBra`),
+  UNIQUE KEY `DateAjoutBra` (`DateAjoutBra`),
+  KEY `typBraID` (`typBraID`),
+  KEY `CPBraID` (`CPBraID`),
+  KEY `PayBraID` (`PayBraID`),
+  KEY `StaBraID` (`StaBraID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
 
 -- --------------------------------------------------------
 
@@ -86,10 +106,12 @@ CREATE TABLE `brasseries` (
 -- Structure de la table `categoriesbieres`
 --
 
-CREATE TABLE `categoriesbieres` (
-  `IdCat` int(11) NOT NULL,
-  `NomCat` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `categoriesbieres`;
+CREATE TABLE IF NOT EXISTS `categoriesbieres` (
+  `IdCat` int(11) NOT NULL AUTO_INCREMENT,
+  `NomCat` varchar(50) COLLATE latin1_general_cs NOT NULL,
+  PRIMARY KEY (`IdCat`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
 
 -- --------------------------------------------------------
 
@@ -97,10 +119,12 @@ CREATE TABLE `categoriesbieres` (
 -- Structure de la table `codepostal`
 --
 
-CREATE TABLE `codepostal` (
+DROP TABLE IF EXISTS `codepostal`;
+CREATE TABLE IF NOT EXISTS `codepostal` (
   `CP` int(11) NOT NULL,
-  `Villes` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `Villes` varchar(50) COLLATE latin1_general_cs NOT NULL,
+  PRIMARY KEY (`CP`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
 
 -- --------------------------------------------------------
 
@@ -108,10 +132,12 @@ CREATE TABLE `codepostal` (
 -- Structure de la table `formats`
 --
 
-CREATE TABLE `formats` (
-  `IdFor` int(11) NOT NULL,
-  `Formats` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `formats`;
+CREATE TABLE IF NOT EXISTS `formats` (
+  `IdFor` int(11) NOT NULL AUTO_INCREMENT,
+  `Formats` varchar(50) COLLATE latin1_general_cs NOT NULL,
+  PRIMARY KEY (`IdFor`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
 
 -- --------------------------------------------------------
 
@@ -119,10 +145,13 @@ CREATE TABLE `formats` (
 -- Structure de la table `formatsbieres`
 --
 
-CREATE TABLE `formatsbieres` (
+DROP TABLE IF EXISTS `formatsbieres`;
+CREATE TABLE IF NOT EXISTS `formatsbieres` (
   `BieForID` int(11) NOT NULL,
-  `IDFor` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `IDFor` int(11) NOT NULL,
+  PRIMARY KEY (`BieForID`),
+  KEY `IDFor` (`IDFor`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
 
 -- --------------------------------------------------------
 
@@ -130,10 +159,25 @@ CREATE TABLE `formatsbieres` (
 -- Structure de la table `pays`
 --
 
-CREATE TABLE `pays` (
-  `IdPay` int(11) NOT NULL,
-  `Pays` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `pays`;
+CREATE TABLE IF NOT EXISTS `pays` (
+  `IdPay` int(11) NOT NULL AUTO_INCREMENT,
+  `Pays` varchar(50) COLLATE latin1_general_cs NOT NULL,
+  PRIMARY KEY (`IdPay`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `role`
+--
+
+DROP TABLE IF EXISTS `role`;
+CREATE TABLE IF NOT EXISTS `role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `role` varchar(20) COLLATE latin1_general_cs DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
 
 -- --------------------------------------------------------
 
@@ -141,10 +185,12 @@ CREATE TABLE `pays` (
 -- Structure de la table `statutbrasseries`
 --
 
-CREATE TABLE `statutbrasseries` (
-  `IdStatut` int(11) NOT NULL,
-  `Statut` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `statutbrasseries`;
+CREATE TABLE IF NOT EXISTS `statutbrasseries` (
+  `IdStatut` int(11) NOT NULL AUTO_INCREMENT,
+  `Statut` varchar(50) COLLATE latin1_general_cs NOT NULL,
+  PRIMARY KEY (`IdStatut`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
 
 -- --------------------------------------------------------
 
@@ -152,10 +198,12 @@ CREATE TABLE `statutbrasseries` (
 -- Structure de la table `stylesbieres`
 --
 
-CREATE TABLE `stylesbieres` (
-  `IdSty` int(11) NOT NULL,
-  `Style` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `stylesbieres`;
+CREATE TABLE IF NOT EXISTS `stylesbieres` (
+  `IdSty` int(11) NOT NULL AUTO_INCREMENT,
+  `Style` varchar(50) COLLATE latin1_general_cs NOT NULL,
+  PRIMARY KEY (`IdSty`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
 
 -- --------------------------------------------------------
 
@@ -163,10 +211,12 @@ CREATE TABLE `stylesbieres` (
 -- Structure de la table `typebrasseries`
 --
 
-CREATE TABLE `typebrasseries` (
-  `IdTyp` int(11) NOT NULL,
-  `TypeBra` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `typebrasseries`;
+CREATE TABLE IF NOT EXISTS `typebrasseries` (
+  `IdTyp` int(11) NOT NULL AUTO_INCREMENT,
+  `TypeBra` varchar(50) COLLATE latin1_general_cs NOT NULL,
+  PRIMARY KEY (`IdTyp`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
 
 -- --------------------------------------------------------
 
@@ -174,192 +224,49 @@ CREATE TABLE `typebrasseries` (
 -- Structure de la table `typeverres`
 --
 
-CREATE TABLE `typeverres` (
-  `IdVerre` int(11) NOT NULL,
-  `TypeVer` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `typeverres`;
+CREATE TABLE IF NOT EXISTS `typeverres` (
+  `IdVerre` int(11) NOT NULL AUTO_INCREMENT,
+  `TypeVer` varchar(50) COLLATE latin1_general_cs NOT NULL,
+  PRIMARY KEY (`IdVerre`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
+
+-- --------------------------------------------------------
 
 --
--- Index pour les tables déchargées
+-- Structure de la table `utilisateur`
 --
 
---
--- Index pour la table `bieres`
---
-ALTER TABLE `bieres`
-  ADD PRIMARY KEY (`ID`),
-  ADD UNIQUE KEY `DateAjoutBie` (`DateAjoutBie`),
-  ADD KEY `CatBieID` (`CatBieID`),
-  ADD KEY `StyBieID` (`StyBieID`),
-  ADD KEY `TypVerBieID` (`TypVerBieID`),
-  ADD KEY `ForBieID` (`ForBieID`),
-  ADD KEY `BrasseriesID` (`BrasseriesID`);
+DROP TABLE IF EXISTS `utilisateur`;
+CREATE TABLE IF NOT EXISTS `utilisateur` (
+  `IdUtil` int(11) NOT NULL AUTO_INCREMENT,
+  `Pseudo` varchar(25) COLLATE latin1_general_cs DEFAULT NULL,
+  `Mail` varchar(255) COLLATE latin1_general_cs DEFAULT NULL,
+  `Mdp` varchar(255) COLLATE latin1_general_cs DEFAULT NULL,
+  `RoleId` int(11) DEFAULT NULL,
+  `Token` int(11) DEFAULT NULL,
+  PRIMARY KEY (`IdUtil`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
+
+-- --------------------------------------------------------
 
 --
--- Index pour la table `bieresbrasseries`
---
-ALTER TABLE `bieresbrasseries`
-  ADD PRIMARY KEY (`BrasseriesID`),
-  ADD KEY `BieresID` (`BieresID`);
-
---
--- Index pour la table `brasseries`
---
-ALTER TABLE `brasseries`
-  ADD PRIMARY KEY (`IDBra`),
-  ADD UNIQUE KEY `DateAjoutBra` (`DateAjoutBra`),
-  ADD KEY `typBraID` (`typBraID`),
-  ADD KEY `CPBraID` (`CPBraID`),
-  ADD KEY `PayBraID` (`PayBraID`),
-  ADD KEY `StaBraID` (`StaBraID`);
-
---
--- Index pour la table `categoriesbieres`
---
-ALTER TABLE `categoriesbieres`
-  ADD PRIMARY KEY (`IdCat`);
-
---
--- Index pour la table `codepostal`
---
-ALTER TABLE `codepostal`
-  ADD PRIMARY KEY (`CP`);
-
---
--- Index pour la table `formats`
---
-ALTER TABLE `formats`
-  ADD PRIMARY KEY (`IdFor`);
-
---
--- Index pour la table `formatsbieres`
---
-ALTER TABLE `formatsbieres`
-  ADD PRIMARY KEY (`BieForID`),
-  ADD KEY `IDFor` (`IDFor`);
-
---
--- Index pour la table `pays`
---
-ALTER TABLE `pays`
-  ADD PRIMARY KEY (`IdPay`);
-
---
--- Index pour la table `statutbrasseries`
---
-ALTER TABLE `statutbrasseries`
-  ADD PRIMARY KEY (`IdStatut`);
-
---
--- Index pour la table `stylesbieres`
---
-ALTER TABLE `stylesbieres`
-  ADD PRIMARY KEY (`IdSty`);
-
---
--- Index pour la table `typebrasseries`
---
-ALTER TABLE `typebrasseries`
-  ADD PRIMARY KEY (`IdTyp`);
-
---
--- Index pour la table `typeverres`
---
-ALTER TABLE `typeverres`
-  ADD PRIMARY KEY (`IdVerre`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
+-- Structure de la table `utilisateurbieres`
 --
 
---
--- AUTO_INCREMENT pour la table `bieres`
---
-ALTER TABLE `bieres`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `brasseries`
---
-ALTER TABLE `brasseries`
-  MODIFY `IDBra` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `categoriesbieres`
---
-ALTER TABLE `categoriesbieres`
-  MODIFY `IdCat` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `formats`
---
-ALTER TABLE `formats`
-  MODIFY `IdFor` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `pays`
---
-ALTER TABLE `pays`
-  MODIFY `IdPay` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `statutbrasseries`
---
-ALTER TABLE `statutbrasseries`
-  MODIFY `IdStatut` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `stylesbieres`
---
-ALTER TABLE `stylesbieres`
-  MODIFY `IdSty` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `typebrasseries`
---
-ALTER TABLE `typebrasseries`
-  MODIFY `IdTyp` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `typeverres`
---
-ALTER TABLE `typeverres`
-  MODIFY `IdVerre` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Contraintes pour les tables déchargées
---
-
---
--- Contraintes pour la table `bieres`
---
-ALTER TABLE `bieres`
-  ADD CONSTRAINT `bieres_ibfk_1` FOREIGN KEY (`CatBieID`) REFERENCES `categoriesbieres` (`IdCat`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `bieres_ibfk_2` FOREIGN KEY (`StyBieID`) REFERENCES `stylesbieres` (`IdSty`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `bieres_ibfk_3` FOREIGN KEY (`TypVerBieID`) REFERENCES `typeverres` (`IdVerre`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `bieres_ibfk_4` FOREIGN KEY (`ForBieID`) REFERENCES `formatsbieres` (`BieForID`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `bieres_ibfk_5` FOREIGN KEY (`BrasseriesID`) REFERENCES `bieresbrasseries` (`BrasseriesID`) ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `bieresbrasseries`
---
-ALTER TABLE `bieresbrasseries`
-  ADD CONSTRAINT `bieresbrasseries_ibfk_1` FOREIGN KEY (`BieresID`) REFERENCES `brasseries` (`IDBra`) ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `brasseries`
---
-ALTER TABLE `brasseries`
-  ADD CONSTRAINT `brasseries_ibfk_1` FOREIGN KEY (`typBraID`) REFERENCES `typebrasseries` (`IdTyp`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `brasseries_ibfk_2` FOREIGN KEY (`CPBraID`) REFERENCES `codepostal` (`CP`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `brasseries_ibfk_3` FOREIGN KEY (`PayBraID`) REFERENCES `pays` (`IdPay`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `brasseries_ibfk_4` FOREIGN KEY (`StaBraID`) REFERENCES `statutbrasseries` (`IdStatut`) ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `formatsbieres`
---
-ALTER TABLE `formatsbieres`
-  ADD CONSTRAINT `formatsbieres_ibfk_1` FOREIGN KEY (`IDFor`) REFERENCES `formats` (`IdFor`) ON UPDATE CASCADE;
+DROP TABLE IF EXISTS `utilisateurbieres`;
+CREATE TABLE IF NOT EXISTS `utilisateurbieres` (
+  `IdUtil` int(11) NOT NULL AUTO_INCREMENT,
+  `IdBieres` int(11) DEFAULT NULL,
+  `NombresBue` int(6) DEFAULT NULL,
+  `Note` int(2) DEFAULT NULL,
+  `Commentaire` mediumtext COLLATE latin1_general_cs,
+  `FirstDrink` time DEFAULT NULL,
+  `LastDrink` time DEFAULT NULL,
+  `Fav` binary(1) DEFAULT '0',
+  PRIMARY KEY (`IdUtil`),
+  KEY `IdBieres` (`IdBieres`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
