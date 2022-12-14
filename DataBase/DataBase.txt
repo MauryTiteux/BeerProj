@@ -1,0 +1,117 @@
+-- Création Base de données
+create database Database_Bieres;
+
+-- Création table CategoriesBieres
+create table Database_Bieres.CategoriesBieres (
+	IdCat int(11) auto_increment primary KEY Not Null,
+	NomCat varchar(50) Not Null
+);
+
+-- Création table StylesBieres
+create table Database_Bieres.StylesBieres (
+	IdSty int(11) auto_increment primary KEY Not Null,
+	Style varchar(50) Not Null
+);
+
+-- Création table TypeVerres
+create table Database_Bieres.TypeVerres (
+	IdVerre int(11) auto_increment primary KEY Not Null,
+	TypeVer varchar(50) Not Null
+);
+
+-- Création table Bieres
+create table Database_Bieres.Bieres (
+	ID int(11) auto_increment primary key,
+	NomBie varchar(25) Not null,
+	BrasseriesID int(11),
+	CatBieID int(11),
+	StyBieID int(11),
+	Alc int(11),
+	IBU int(11),
+	EBC int(11),
+	PresentationBie Mediumtext,
+	Ingredients text default'Eau, Malt, Houblon, Levures.',
+	PhotoBie VARCHAR(255),
+	codeBarre INT(25),
+	ForBieID int(11),
+	TypVerBieID int(11),
+	DateCreaBie Year,
+	DateAjoutBie Datetime UNIQUE,
+    FOREIGN KEY (CatBieID) REFERENCES CategoriesBieres(IdCat) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (StyBieID) REFERENCES StylesBieres(IdSty) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (TypVerBieID) REFERENCES TypeVerres(IdVerre) ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- Création table TypeBrasseries
+create table Database_Bieres.TypeBrasseries (
+	IdTyp int(11) auto_increment Not Null PRIMARY KEY,
+	TypeBra varchar(50) Not Null
+);
+
+-- Création table CodePostal
+create table Database_Bieres.CodePostal (
+	CP int(11) primary KEY Not Null,
+	Villes varchar(50) Not Null
+);
+
+-- Création table Pays
+create table Database_Bieres.Pays (
+	IdPay int(11) auto_increment primary KEY Not Null,
+	Pays varchar(50) Not Null
+);
+
+-- Création table StatutBrasseries
+create table Database_Bieres.StatutBrasseries (
+	IdStatut int(11) auto_increment primary KEY Not Null,
+	Statut varchar(50) Not Null
+);
+
+-- Création table Brasseries
+create table Database_Bieres.Brasseries (
+	IDBra int(11) auto_increment primary key,
+	NomBra varchar(25) Not null,
+	typBraID int(11),
+	Adresse varchar(255),
+	CPBraID int(11),
+	PayBraID int(11),
+	SiteWeb text,
+	Facebook text,
+	Instagram text,
+	DateCreaBra Datetime,
+	Logo text,
+	PresentationBra Mediumtext,
+	StaBraID INT(11),
+	DateAjoutBra Datetime Unique,
+    FOREIGN KEY (TypBraID) REFERENCES TypeBrasseries(IDTyp) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (CPBraID) REFERENCES CodePostal(CP) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (PayBraID) REFERENCES Pays(IdPay) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (StaBraID) REFERENCES StatutBrasseries(IDStatut) ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- Création table BieresBrasseries (lien entre Bieres et Brasserie)
+create table Database_Bieres.BieresBrasseries (
+	BrasseriesID int(11) Not Null PRIMARY KEY,
+	BieresID int(11) Not Null,
+	FOREIGN KEY (BieresID) REFERENCES Brasseries (IDBra) ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- Création table Formats
+create table Database_Bieres.Formats (
+	IdFor int(11) auto_increment primary KEY Not Null,
+	Formats varchar(50) Not Null
+);
+
+-- Création table FormatsBieres (lien entre Bieres et Formats)
+create table Database_Bieres.Formatsbieres (
+	BieForID int(11) Not Null PRIMARY KEY,
+    IDFor int(11) Not Null,
+	FOREIGN KEY (IDFor) REFERENCES Formats (IDFor) ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- Ajout foreign Key entre formatBieres et Bieres
+ALTER TABLE DataBase_Bieres.Bieres
+Add FOREIGN KEY (ForBieID) REFERENCES FormatsBieres (BieForID) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- Ajout foreign Key entre BieresBrasseries et Bieres
+ALTER TABLE DataBase_Bieres.Bieres
+ADD FOREIGN KEY (BrasseriesID) REFERENCES BieresBrasseries (BrasseriesId) ON DELETE RESTRICT ON UPDATE CASCADE;
