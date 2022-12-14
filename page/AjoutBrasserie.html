@@ -1,34 +1,39 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<title>Ajouter une Brasserie</title>
-</head>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ajouter une Brasserie</title>
+  </head>
 
-<body>
-	
-	<form action="../Php/insertbrewery.php" method="post">
+  <body>
+    <form action="../Php/insertbrewery.php" method="post">
+      Nom de la Brasserie: <input type="text" name="NomBra" /><br /><br />
+      <label>Type de brasserie:</label> <br />
+      <input type="radio" name="TypeBra" value="1" />Brasserie Artisanale
+      <input type="radio" name="TypeBra" value="2" />Micro-Brasserie
+      <input type="radio" name="TypeBra" value="3" />Brasserie industrielle<br /><br />
+      Adresse : <input type="text" name="Adresse" /><br /><br />
+      Code postal : <input type="text" name="CP" /><br /><br />
+      Ville : <input type="text" name="ville" /><br /><br />
+      Pays : <input type="text" name="Pays" /><br /><br />
+      Site Web : <input type="text" name="SiteWeb" /><br /><br />
+      Facebook : <input type="text" name="Facebook" /><br /><br />
+      Instagram : <input type="text" name="Instagram" /><br /><br />
+      Date de création de la Brasserie :
+      <input type="text" name="DateCreaBra" /><br /><br />
+      Logo de la brasserie : <input type="hidden" name="LogoBra" value="100" />
+      <input name="file" type="file" /><br /><br />
+      Présentation de la brasserie:<br />
+      <textarea rows="5" cols="100" wrap="physique" name="PresentationBie">
+Ecrivez un commentaire</textarea
+      ><br /><br />
+      <label>Statut:</label> <br />
+      <input type="radio" name="Statut" value="1" />Ouverte<br />
+      <input type="radio" name="Statut" value="2" />Fermée<br /><br />
 
-		Nom de la Brasserie: <input type="text" name="NomBra" /><br/><br/>
-		<label>Type de brasserie:</label> <br/>
-		<input type="radio" name="TypeBra" value="1"/>Brasserie Artisanale
-		<input type="radio" name="TypeBra" value="2"/>Micro-Brasserie
-		<input type="radio" name="TypeBra" value="3"/>Brasserie industrielle<br/><br/>
-		Adresse : <input type="text" name="Adresse" /><br/><br/>
-		Code postal : <input type="text" name="CP" /><br/><br/>
-		Ville : <input type="text" name="ville"/><br/><br/>
-		Pays : <input type="text" name="Pays" /><br/><br/>
-		Site Web : <input type="text" name="SiteWeb" /><br/><br/>
-		Facebook : <input type="text" name="Facebook" /><br/><br/>
-		Instagram : <input type="text" name="Instagram" /><br/><br/>
-		Date de création de la Brasserie : <input type="text" name="DateCreaBra" /><br/><br/>
-		Logo de la brasserie : <input type="hidden" name="LogoBra" value="100"/> <input name="file" type="file" /><br/><br/>
-		Présentation de la brasserie:<br/> <textarea rows="5" cols="100" wrap="physique" name="PresentationBie">Ecrivez un commentaire</textarea><br/><br/>
-		<label>Statut:</label> <br/>
-		<input type="radio" name="Statut" value="1"/>Ouverte<br/>
-		<input type="radio" name="Statut" value="2"/>Fermée<br/><br/>		
-	 
-	<input type="submit"/>
-	</form>
-</body>
+      <input type="submit" />
+    </form>
+  </body>
 </html>
