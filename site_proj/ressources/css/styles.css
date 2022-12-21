@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Pacifico&display=swap");
+
+body {
+    width: 100%;
+    margin: auto;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9em;
+    background-color: #D0D3D4; /*blanc casser*/
+}
+
+header {
+    background-color: #ccc;
+}
+
+footer {
+    background-color: #ccc;
+}
