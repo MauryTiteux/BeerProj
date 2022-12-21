@@ -3,8 +3,9 @@
     "",
     "\\DataBase",
     "\\page",
+    "\\Php",
     "\\site_proj"
   ],
-  "SelectedNode": "\\page\\AjoutBieres.html",
+  "SelectedNode": "\\Php\\insertbrewery.php",
   "PreviewInSolutionExplorer": false
 }
