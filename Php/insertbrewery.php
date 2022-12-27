@@ -43,9 +43,13 @@
         $sth->bindParam(':Pays',$Pays);
         $sth->execute();
 
+        $PaysBra = $dbco->prepare("SELECT IdPay FROM pays WHERE Pays= '$Pays'");
+        $PaysBra->execute();
+        $PaysBraID=$PaysBra;
+
         $sth = $dbco->prepare("
-            INSERT INTO Brasseries(NomBra, TypBraID, Adresse, CPBraID, SiteWeb, Facebook, Instagram)
-            VALUES(:NomBra, :TypBraID, :Adresse, :CPBraID, :SiteWeb, :Facebook, :Instagram)");
+            INSERT INTO Brasseries(NomBra, TypBraID, Adresse, CPBraID, PaysBraID, SiteWeb, Facebook, Instagram)
+            VALUES(:NomBra, :TypBraID, :Adresse, :CPBraID, :PaysBraID, :SiteWeb, :Facebook, :Instagram)");
         $sth->bindParam(':NomBra',$NomBra);
         $sth->bindParam(':Adresse',$Adresse);
         $sth->bindParam(':CPBraID',$CPBraID);
@@ -53,6 +57,7 @@
         $sth->bindParam(':Facebook',$Facebook);
         $sth->bindParam(':Instagram',$Instagram);
         $sth->bindParam(':TypBraID',$TypBraID);
+        $sth->bindParam(':PaysBraID',$PaysBraID);
         $sth->execute();
 
         
