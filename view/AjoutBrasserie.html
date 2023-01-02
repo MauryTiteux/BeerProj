@@ -8,7 +8,7 @@
   </head>
 
   <body>
-    <form action="../Php/insertbrewery.php" method="post">
+    <form action="../model/insertbrewery.php" method="post" enctype="multipart/form-data">
       Nom de la Brasserie: <input type="text" name="NomBra" /><br /><br />
       <label>Type de brasserie:</label> <br />
       <input type="radio" name="TypBraID" value=1 />Brasserie Artisanale
@@ -24,9 +24,9 @@
       Date de création de la Brasserie :
       <input type="text" name="DateCreaBra" /><br /><br />
       Logo de la brasserie : <input type="hidden" name="LogoBra" value="100" />
-      <input name="file" type="file" /><br /><br />
+      <input name="file" type="file" accept="image/*" /><br /><br />
       Présentation de la brasserie:<br />
-      <textarea rows="5" cols="100" wrap="physique" name="PresentationBie">
+      <textarea rows="5" cols="100" wrap="physique" name="PresentationBra">
 Ecrivez un commentaire</textarea
       ><br /><br />
       <label>Statut:</label> <br />
