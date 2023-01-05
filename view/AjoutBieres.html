@@ -11,8 +11,12 @@
     <form action="../model/insertbeer.php" method="post">
       Nom de la bière: <input type="text" name="NomBie" /><br /><br />
       Brasserie :<input type="text" name="NomBra" /><br /><br />
-      Catégorie : <input type="text" name="NomCat" /><br /><br />
       Style : <input type="text" name="Style" /><br /><br />
+      <p>Fermentation :</p>
+      <input type="radio" name="Fermentation" value=1 /> Fermentation haute
+      <input type="radio" name="Fermentation" value=2 /> Fermentation basse
+      <input type="radio" name="Fermentation" value=3 /> Fermentation spontanée
+      <input type="radio" name="Fermentation" value=4 /> Fermentation mixte<br/><br/>
       Taux d'alcool : <input type="text" name="Alc" /><br /><br />  
       IBU : <input type="text" name="IBU" /><br /><br />
       EBC : <input type="text" name="EBC" /><br /><br />
@@ -20,44 +24,42 @@
       <textarea rows="5" cols="100" wrap="physique" name="PresentationBie">
 Ecrivez un commentaire</textarea
       ><br /><br />
-      Ingrédients : <input type="text" name="Ingredients" /><br /><br />
-      Taux d'alcool: <input type="text" name="Alc" /><br /><br />
-      Photo de la bières : <input type="hidden" name="PhotoBie" value="100" />
-      <input name="file" type="file" /><br /><br />
-      Code Barre : <input type="text" name="CodeBarre" /><br />
+      Ingrédients : <input type="text" name="Ingredients" /><br /><br/>
+      Photo de la bières : <input type="hidden" name="PhotoBie" value="2500" />
+      <input name="file" type="file" accept="image/*" /><br /><br />
       <p>Formats :</p>
-      <input type="checkbox" name="Formats" value="1" /> 20cl
-      <input type="checkbox" name="Formats" value="2" /> 25cl
-      <input type="checkbox" name="Formats" value="3" /> 33cl
-      <input type="checkbox" name="Formats" value="4" /> 341ml
-      <input type="checkbox" name="Formats" value="5" /> 355ml
-      <input type="checkbox" name="Formats" value="6" /> 375ml
-      <input type="checkbox" name="Formats" value="7" /> 50cl
-      <input type="checkbox" name="Formats" value="8" /> 66cl
-      <input type="checkbox" name="Formats" value="9" /> 70cl
-      <input type="checkbox" name="Formast" value="10" /> 75cl <br />
-      <input type="checkbox" name="Formats" value="11" /> 800ml
-      <input type="checkbox" name="Formats" value="12" /> 1L
-      <input type="checkbox" name="Formats" value="13" /> 1,5L
-      <input type="checkbox" name="Formats" value="14" /> Fût TORPs
-      <input type="checkbox" name="Formats" value="15" /> 2,5L
-      <input type="checkbox" name="Formats" value="16" /> 3L
-      <input type="checkbox" name="Formats" value="17" /> Mini-Fût
-      <input type="checkbox" name="Formats" value="18" /> BeerTender
-      <input type="checkbox" name="Formats" value="19" /> PerfectDraft
-      <input type="checkbox" name="Formats" value="20" /> Fût<br />
+      <input type="checkbox" name="Formats" value=1 /> 20cl
+      <input type="checkbox" name="Formats" value=2 /> 25cl
+      <input type="checkbox" name="Formats" value=3 /> 33cl
+      <input type="checkbox" name="Formats" value=4 /> 341ml
+      <input type="checkbox" name="Formats" value=5 /> 355ml
+      <input type="checkbox" name="Formats" value=6 /> 375ml
+      <input type="checkbox" name="Formats" value=7 /> 50cl
+      <input type="checkbox" name="Formats" value=8 /> 66cl
+      <input type="checkbox" name="Formats" value=9 /> 70cl
+      <input type="checkbox" name="Formast" value=10 /> 75cl <br />
+      <input type="checkbox" name="Formats" value=11 /> 800ml
+      <input type="checkbox" name="Formats" value=12 /> 1L
+      <input type="checkbox" name="Formats" value=13 /> 1,5L
+      <input type="checkbox" name="Formats" value=14 /> Fût TORPs
+      <input type="checkbox" name="Formats" value=15 /> 2,5L
+      <input type="checkbox" name="Formats" value=16 /> 3L
+      <input type="checkbox" name="Formats" value=17 /> Mini-Fût
+      <input type="checkbox" name="Formats" value=18 /> BeerTender
+      <input type="checkbox" name="Formats" value=19 /> PerfectDraft
+      <input type="checkbox" name="Formats" value=20 /> Fût<br />
       <p>Type de Verre :</p>
       <select name="TypeVer">
-        <option>Choisir</option>
-        <option>Droit</option>
-        <option>Ballon</option>
-        <option>Flute</option>
-        <option>Originale</option>
-        <option>Calice</option>
-        <option>Tulipe évasée</option>
-        <option>Pinte</option>
-        <option>Chope</option>
-        <option>Weizenbecker</option></select
+        <option value=1 >Choisir</option>
+        <option value=2 >Droit</option>
+        <option value=3 >Ballon</option>
+        <option value=4 >Flute</option>
+        <option value=5 >Originale</option>
+        <option value=6 >Calice</option>
+        <option value=7 >Tulipe évasée</option>
+        <option value=9 >Pinte</option>
+        <option value=10 >Chope</option>
+        <option value=11 >Weizenbecker</option></select
       ><br /><br />
       Date de création : <input type="text" name="DateCreaBie" /><br /><br />
 

@@ -1,11 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\DataBase",
-    "\\page",
-    "\\Php",
-    "\\site_proj"
+    "\\controller",
+    "\\model",
+    "\\ressources\\img",
+    "\\ressources\\img\\bieres"
   ],
-  "SelectedNode": "\\Php\\insertbrewery.php",
+  "SelectedNode": "\\model\\insertbeer.php",
   "PreviewInSolutionExplorer": false
 }
