@@ -1,0 +1,26 @@
+body {
+  background-color: #fff;
+  margin: 1.2rem auto;
+  max-width: 720px;
+  width: 100%;
+  padding: 0 0.8rem;
+}
+
+.alert {
+  background-color: #ccc;
+  padding: 0.4rem;
+  margin-bottom: 4px;
+}
+
+.alert.alert-success {
+  background-color: green;
+}
+
+.alert.alert-error {
+  background-color: red;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
