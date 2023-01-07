@@ -12,9 +12,9 @@
     <h1>Belgian's Beers</h1>
     <ul>
     <li><a href="/">Accueil</a></li>
-    <li><a href="/pages/contact.php">Contact</a></li>
+    <li><a href="pages/contact.php">Contact</a></li>
     <?php if(!currentUser()): ?>
-      <li><a href="/sessions/new.php">Connecter</a></li>
+      <li><a href="sessions/new.php">Connecter</a></li>
     <?php else: ?>
       <li>Connecté en tant que <?= currentUser()['Pseudo'] ?></li>
       <li><a href="/pages/boire.php?id=1">Boire Jupiler</li>
