@@ -1,8 +1,9 @@
 <?php
-  // Include helpers
+  // Dependencies
   // ===========================================================================
 
-  include_once 'helpers/bootstrap.php';
+  require_once 'models/bootstrap.php';
+  require_once 'helpers/bootstrap.php';
 
   // Authorizations
   // ===========================================================================

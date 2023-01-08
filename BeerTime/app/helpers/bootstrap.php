@@ -1,6 +1,4 @@
 <?php
-  include_once 'helpers/database.php';
-  include_once 'helpers/sessions.php';
-  include_once 'helpers/users.php';
-  include_once 'helpers/methods.php';
-?>
+require_once 'helpers/flash.php';
+require_once 'helpers/methods.php';
+require_once 'helpers/user.php';

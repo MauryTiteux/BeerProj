@@ -1,8 +1,9 @@
 <?php
-  // Include helpers
+  // Dependencies
   // ===========================================================================
 
-  include_once 'helpers/bootstrap.php';
+  require_once 'models/bootstrap.php';
+  require_once 'helpers/bootstrap.php';
 
   // Authorizations
   // ===========================================================================
@@ -10,17 +11,11 @@
   actionRequireMethodGet();
   actionRequireUser();
 
-  // Include models
-  // ===========================================================================
-
-  // No models required.
-
   // Manage Logic
   // ===========================================================================
 
-  $_SESSION['user_id'] = null;
-  $_SESSION['user_token'] = null;
-  sessionAlertAdd('success', "Bravo, vous êtes déconnecté.");
+  $_SESSION['user'] = null;
+  flashAdd('success', "Bravo, vous êtes déconnecté.");
   header('Location: /');
   die;
 

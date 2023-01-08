@@ -1,5 +1,5 @@
-<?php if(!empty($_SESSION['alert'])): ?>
-  <?php foreach ($_SESSION['alert'] as $alert): ?>
+<?php if (!empty($_SESSION['alert'])) : ?>
+  <?php foreach ($_SESSION['alert'] as $alert) : ?>
     <div class="alert alert-<?= $alert['type'] ?>">
       <?= $alert['message'] ?>
     </div>
@@ -7,5 +7,5 @@
 <?php endif ?>
 
 <?php
-  sessionAlertDestroy()
+flashDestroy()
 ?>

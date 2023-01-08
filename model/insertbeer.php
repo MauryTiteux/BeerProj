@@ -9,7 +9,7 @@
 		
 	<?php
     $servername = "localhost";
-    $database = "database_bieres";
+    $database = "database_beers";
     $username = "root";
     $password = "root";
 // Create connection
@@ -29,12 +29,11 @@
     $IBU = $_POST["IBU"];
     $EBC = $_POST["EBC"];
     $Presentation = str_ireplace("'", "\'", $_POST["PresentationBie"]);
-    $Ingredients = str_ireplace("'", "\'", $_POST['Ingredients']);
     $IDFor = $_POST['Formats'];
     $TypeVer = $_POST['TypeVer'];
     $DateCrea = $_POST['DateCreaBie'];
-    var_dump($_FILES["file"]);
-// Get reference to uploaded image
+
+/*// Get reference to uploaded image
     $image_file = $_FILES["file"];
 // Image not defined, let's exit
     if (isset($image_file)) {
@@ -49,7 +48,8 @@
         $Photo = "../ressources/img/bieres/". $image_file["name"];
     }
     else {die('No file uploaded.');}
-    //$Photo = "";
+    */
+    $Photo = "";
 
 //On insère le style
     $sql = "INSERT IGNORE INTO stylesbieres (Style) VALUES('$Style')";
@@ -62,9 +62,13 @@
     $StyID = (int) $StyID['id'];
 
 //On insère les données de la bière
-    $sql = "INSERT INTO bieres (Nom, StyID, FerID, Alc, IBU, EBC, Presentation, Ingredients, Photo, TypVerID, DateCrea)
-            VALUES ('$Nom', $StyID, $Fermentation, $Alc,$IBU, $EBC, '$Presentation', '$Ingredients', '$Photo', $TypeVer, $DateCrea)";
-    mysqli_query($conn, $sql);
+    $sql = "INSERT INTO beers (name, description, alcool, ibu, ebc, style_id, type_verre_id, fermentation_id, picture, created_at)
+            VALUES ('$Nom', '$Presentation', $Alc,$IBU, $EBC, $StyID, $TypeVer, $Fermentation, '$Photo', $DateCrea)";
+    if (mysqli_query($conn, $sql)) {
+      echo "Nouveau enregistrement créé avec succès";
+} else {
+      echo "Erreur : " . $sql . "<br>" . mysqli_error($conn);
+}
 
 //On insère la brasserie si elle n'existe pas encore
     $sql = "INSERT IGNORE INTO brasseries (Nom) VALUES('$NomBra')";
@@ -77,7 +81,7 @@
     $BraID = (int) $BraID['id'];
 
 //On récupère l'id de la biere 
-    $sql = "SELECT id FROM bieres WHERE Nom= '$Nom'";
+    $sql = "SELECT id FROM beers WHERE name= '$Nom'";
     $result = mysqli_query($conn, $sql);
     $BieID = mysqli_fetch_assoc($result);
     $BieID = (int) $BieID['id'];

@@ -1,8 +1,9 @@
 <?php
-  // Include helpers
+  // Dependencies
   // ===========================================================================
 
-  include_once 'helpers/bootstrap.php';
+  require_once 'models/bootstrap.php';
+  require_once 'helpers/bootstrap.php';
 
   // Authorizations
   // ===========================================================================
@@ -10,30 +11,24 @@
   actionRequireMethodPost();
   actionRequireGuest();
 
-  // Include models
-  // ===========================================================================
-
-  include_once 'models/user.php';
-
   // Manage Logic
   // ===========================================================================
 
-  $pseudo = $_POST['user_pseudo'];
-  $password = $_POST['user_password'];
+  $form['username'] = $_POST['user_pseudo'];
+  $form['password'] = $_POST['user_password'];
 
   // Try to find user by data posted
-  $user = userByPseudoAndPassword($pseudo, $password);
+  $user = User::findWithCredentials($form['username'], $form['password']);
 
   if($user) {
-    $_SESSION['user_id'] = $user['id'];
-    $_SESSION['user_token'] = $user['Token'];
-    sessionAlertAdd('success', "Bravo, vous êtes connecté.");
+    $_SESSION['user']['user_id'] = $user->id;
+    $_SESSION['user']['user_token'] = $user->session_token;
+    flashAdd('success', "Bravo, vous êtes connecté.");
     header('Location: /');
     die;
   }
 
-  sessionAlertAdd('error', "Identifiants incorects");
-  $view['user_pseudo'] = $pseudo;
+  flashAdd('error', "Identifiants incorects !");
 
   // Include View
   // ===========================================================================

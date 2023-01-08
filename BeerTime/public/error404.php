@@ -1,4 +1,4 @@
 <?php
   set_include_path('../app');
-  include 'controllers/pages/error.php';
+  require_once 'controllers/pages/error.php';
 ?>
