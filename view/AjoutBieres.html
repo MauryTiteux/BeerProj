@@ -8,7 +8,7 @@
   </head>
 
   <body>
-    <form action="../model/insertbeer.php" method="post">
+    <form action="../model/insertbeer.php" method="post" enctype="multipart/form-data">
       Nom de la bière: <input type="text" name="NomBie" /><br /><br />
       Brasserie :<input type="text" name="NomBra" /><br /><br />
       Style : <input type="text" name="Style" /><br /><br />
@@ -52,13 +52,15 @@ Ecrivez un commentaire</textarea
         <option value=0 >Choisir</option>
         <option value=1 >Droit</option>
         <option value=2 >Ballon</option>
-        <option value=3 >Flute</option>
+        <option value=3 >Ballon évasé</option>
         <option value=4 >Originale</option>
-        <option value=5 >Calice</option>
+        <option value=5 >Tulipe</option>
         <option value=6 >Tulipe évasée</option>
         <option value=7 >Pinte</option>
         <option value=8 >Chope</option>
-        <option value=9 >Weizenbecker</option></select
+        <option value=9 >Weizenbecker</option>
+        <option value=10 >Flute</option>
+        <option value=11 >Calice</option></select
       ><br /><br />
       Date de création : <input type="text" name="DateCreaBie" /><br /><br />
 

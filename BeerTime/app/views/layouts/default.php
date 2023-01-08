@@ -7,7 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title><?php echo $metaPageTitle ? "{$metaAppTitle} - {$metaPageTitle}" : $metaAppTitle ?></title>
-  <link rel="stylesheet" href="/assets/stylesheets/styles.css">
+  <link rel="stylesheet" href="/assets/stylesheets/spectre-exp.min.css">
+  <link rel="stylesheet" href="/assets/stylesheets/spectre-icons.min.css">
+  <link rel="stylesheet" href="/assets/stylesheets/spectre.min.css">
 </head>
 
 <body>

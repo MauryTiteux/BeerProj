@@ -1,6 +1,6 @@
 <?php if (!empty($_SESSION['alert'])) : ?>
   <?php foreach ($_SESSION['alert'] as $alert) : ?>
-    <div class="alert alert-<?= $alert['type'] ?>">
+    <div class="toast toast-<?= $alert['type'] ?>">
       <?= $alert['message'] ?>
     </div>
   <?php endforeach ?>

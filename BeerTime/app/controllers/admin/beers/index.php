@@ -1,30 +1,29 @@
 <?php
-  // Dependencies
-  // ===========================================================================
+// Dependencies
+// ===========================================================================
 
-  require_once 'models/bootstrap.php';
-  require_once 'helpers/bootstrap.php';
+require_once 'models/bootstrap.php';
+require_once 'helpers/bootstrap.php';
 
-  // Authorizations
-  // ===========================================================================
+// Authorizations
+// ===========================================================================
 
-  actionRequireMethodGet();
-  actionRequireAdmin();
+actionRequireMethodGet();
+actionRequireAdmin();
 
-  // Manage Logic
-  // ===========================================================================
+// Manage Logic
+// ===========================================================================
 
-  $view['beers'] = Beer::all();
+$view['beers'] = Beer::all();
 
-  // Include View
-  // ===========================================================================
+// Include View
+// ===========================================================================
 
-  // Set page title
-  $metaPageTitle = "Admin - Liste des bières";
+// Set page title
+$metaPageTitle = "Admin - Liste des bières";
 
-  // Load view
-  $actionView = "admin/beers/index.php";
+// Load view
+$actionView = "admin/beers/index.php";
 
-  // Load layout
-  include_once 'views/layouts/default.php';
-?>
+// Load layout
+include_once 'views/layouts/default.php';

@@ -1,33 +1,32 @@
 <?php
-  // Dependencies
-  // ===========================================================================
+// Dependencies
+// ===========================================================================
 
-  require_once 'models/bootstrap.php';
-  require_once 'helpers/bootstrap.php';
+require_once 'models/bootstrap.php';
+require_once 'helpers/bootstrap.php';
 
-  // Authorizations
-  // ===========================================================================
+// Authorizations
+// ===========================================================================
 
-  actionRequireMethodGet();
-  actionRequireAdmin();
+actionRequireMethodGet();
+actionRequireAdmin();
 
-  // Manage Logic
-  // ===========================================================================
+// Manage Logic
+// ===========================================================================
 
-  $beer = new Beer();
+$beer = new Beer();
 
-  $view['beer'] = $beer;
-  $view['form_fields'] = [ "name", "description", "alcool", "ibu", "ebc", "style_id", "format_id", "type_verre_id", "brasserie_id", "categorie_id"];
+$view['beer'] = $beer;
+$view['form_fields'] = ["name", "description", "alcool", "ibu", "ebc", "style_id", "type_verre_id"];
 
-  // Include View
-  // ===========================================================================
+// Include View
+// ===========================================================================
 
-  // Set page title
-  $metaPageTitle = "Admin - Ajouter une bière";
+// Set page title
+$metaPageTitle = "Admin - Ajouter une bière";
 
-  // Load view
-  $actionView = "admin/beers/new.php";
+// Load view
+$actionView = "admin/beers/new.php";
 
-  // Load layout
-  include_once 'views/layouts/default.php';
-?>
+// Load layout
+include_once 'views/layouts/default.php';

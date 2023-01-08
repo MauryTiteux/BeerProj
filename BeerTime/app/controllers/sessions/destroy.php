@@ -1,23 +1,23 @@
 <?php
-  // Dependencies
-  // ===========================================================================
+// Dependencies
+// ===========================================================================
 
-  require_once 'models/bootstrap.php';
-  require_once 'helpers/bootstrap.php';
+require_once 'models/bootstrap.php';
+require_once 'helpers/bootstrap.php';
 
-  // Authorizations
-  // ===========================================================================
+// Authorizations
+// ===========================================================================
 
-  actionRequireMethodGet();
-  actionRequireUser();
+actionRequireMethodGet();
+actionRequireUser();
 
-  // Manage Logic
-  // ===========================================================================
+// Manage Logic
+// ===========================================================================
 
-  $_SESSION['user'] = null;
-  flashAdd('success', "Bravo, vous êtes déconnecté.");
-  header('Location: /');
-  die;
+$_SESSION['user'] = null;
+flashAdd('success', "Bravo, vous êtes déconnecté.");
+header('Location: /');
+die;
 
   // Include View
   // ===========================================================================
@@ -30,4 +30,3 @@
 
   // Load layout
   // include_once '';
-?>

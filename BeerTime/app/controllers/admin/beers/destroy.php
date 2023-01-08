@@ -1,27 +1,26 @@
 <?php
-  // Dependencies
-  // ===========================================================================
+// Dependencies
+// ===========================================================================
 
-  require_once 'models/bootstrap.php';
-  require_once 'helpers/bootstrap.php';
+require_once 'models/bootstrap.php';
+require_once 'helpers/bootstrap.php';
 
-  // Authorizations
-  // ===========================================================================
+// Authorizations
+// ===========================================================================
 
-  actionRequireMethodGet();
-  actionRequireAdmin();
+actionRequireMethodGet();
+actionRequireAdmin();
 
-  // Manage Logic
-  // ===========================================================================
+// Manage Logic
+// ===========================================================================
 
-  $id = $_GET['id'];
-  $beer = Beer::find($id);
+$id = $_GET['id'];
+$beer = Beer::find($id);
 
-  if($beer) {
-    $beer->delete();
-    flashAdd('success', "La bière a été supprimée.");
-  }
+if ($beer) {
+  $beer->delete();
+  flashAdd('success', "La bière a été supprimée.");
+}
 
-  header('Location: /admin/beers/index.php');
-  die;
-?>
+header('Location: /admin/beers/index.php');
+die;

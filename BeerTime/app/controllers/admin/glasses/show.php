@@ -1,39 +1,38 @@
 <?php
-  // Dependencies
-  // ===========================================================================
+// Dependencies
+// ===========================================================================
 
-  require_once 'models/bootstrap.php';
-  require_once 'helpers/bootstrap.php';
+require_once 'models/bootstrap.php';
+require_once 'helpers/bootstrap.php';
 
-  // Authorizations
-  // ===========================================================================
+// Authorizations
+// ===========================================================================
 
-  actionRequireMethodGet();
-  actionRequireAdmin();
+actionRequireMethodGet();
+actionRequireAdmin();
 
-  // Manage Logic
-  // ===========================================================================
+// Manage Logic
+// ===========================================================================
 
-  $id = $_GET['id'];
-  $beer_glass = BeerGlass::find($id);
+$id = $_GET['id'];
+$beer_glass = BeerGlass::find($id);
 
-  if($beer_glass == null) {
-    header('Location: /admin/glasses/index.php');
-    die;
-  }
+if ($beer_glass == null) {
+  header('Location: /admin/glasses/index.php');
+  die;
+}
 
-  $view['beer_glass'] = $beer_glass;
-  $view['form_fields'] = ["name"];
+$view['beer_glass'] = $beer_glass;
+$view['form_fields'] = ["name"];
 
-  // Include View
-  // ===========================================================================
+// Include View
+// ===========================================================================
 
-  // Set page title
-  $metaPageTitle = "Admin - Modifier {$beer_glass->name}";
+// Set page title
+$metaPageTitle = "Admin - Modifier {$beer_glass->name}";
 
-  // Load view
-  $actionView = "admin/glasses/show.php";
+// Load view
+$actionView = "admin/glasses/show.php";
 
-  // Load layout
-  include_once 'views/layouts/default.php';
-?>
+// Load layout
+include_once 'views/layouts/default.php';

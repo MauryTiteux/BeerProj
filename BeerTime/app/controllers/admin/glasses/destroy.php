@@ -1,27 +1,26 @@
 <?php
-  // Dependencies
-  // ===========================================================================
+// Dependencies
+// ===========================================================================
 
-  require_once 'models/bootstrap.php';
-  require_once 'helpers/bootstrap.php';
+require_once 'models/bootstrap.php';
+require_once 'helpers/bootstrap.php';
 
-  // Authorizations
-  // ===========================================================================
+// Authorizations
+// ===========================================================================
 
-  actionRequireMethodGet();
-  actionRequireAdmin();
+actionRequireMethodGet();
+actionRequireAdmin();
 
-  // Manage Logic
-  // ===========================================================================
+// Manage Logic
+// ===========================================================================
 
-  $id = $_GET['id'];
-  $beer_glass = BeerGlass::find($id);
+$id = $_GET['id'];
+$beer_glass = BeerGlass::find($id);
 
-  if($beer_glass) {
-    $beer_glass->delete();
-    flashAdd('success', "Le format a été supprimée.");
-  }
+if ($beer_glass) {
+  $beer_glass->delete();
+  flashAdd('success', "Le format a été supprimée.");
+}
 
-  header('Location: /admin/glasses/index.php');
-  die;
-?>
+header('Location: /admin/glasses/index.php');
+die;

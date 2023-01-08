@@ -1,30 +1,29 @@
 <?php
-  // Dependencies
-  // ===========================================================================
+// Dependencies
+// ===========================================================================
 
-  require_once 'models/bootstrap.php';
-  require_once 'helpers/bootstrap.php';
+require_once 'models/bootstrap.php';
+require_once 'helpers/bootstrap.php';
 
-  // Authorizations
-  // ===========================================================================
+// Authorizations
+// ===========================================================================
 
-  actionRequireMethodGet();
-  actionRequireGuest();
+actionRequireMethodGet();
+actionRequireGuest();
 
-  // Manage Logic
-  // ===========================================================================
+// Manage Logic
+// ===========================================================================
 
-  // No required logic
+// No required logic
 
-  // Include View
-  // ===========================================================================
+// Include View
+// ===========================================================================
 
-  // Set page title
-  $metaPageTitle = "Connexion";
+// Set page title
+$metaPageTitle = "Connexion";
 
-  // Load view
-  $actionView = "sessions/new.php";
+// Load view
+$actionView = "sessions/new.php";
 
-  // Load layout
-  include_once 'views/layouts/default.php';
-?>
+// Load layout
+include_once 'views/layouts/default.php';

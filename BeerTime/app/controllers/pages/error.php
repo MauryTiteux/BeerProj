@@ -1,34 +1,33 @@
 <?php
-  // Dependencies
-  // ===========================================================================
+// Dependencies
+// ===========================================================================
 
-  require_once 'models/bootstrap.php';
-  require_once 'helpers/bootstrap.php';
+require_once 'models/bootstrap.php';
+require_once 'helpers/bootstrap.php';
 
-  // Authorizations
-  // ===========================================================================
+// Authorizations
+// ===========================================================================
 
-  // No authorization required.
+// No authorization required.
 
-  // Include models
-  // ===========================================================================
+// Include models
+// ===========================================================================
 
-  // No models required.
+// No models required.
 
-  // Manage Logic
-  // ===========================================================================
+// Manage Logic
+// ===========================================================================
 
-  // No Logic required.
+// No Logic required.
 
-  // Include View
-  // ===========================================================================
+// Include View
+// ===========================================================================
 
-  // Set page title
-  $metaPageTitle = "ERREUR 404";
+// Set page title
+$metaPageTitle = "ERREUR 404";
 
-  // Load view
-  $actionView = "pages/error.php";
+// Load view
+$actionView = "pages/error.php";
 
-  // Load layout
-  include_once 'views/layouts/default.php';
-?>
+// Load layout
+include_once 'views/layouts/default.php';

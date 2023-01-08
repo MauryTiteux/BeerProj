@@ -1,44 +1,43 @@
 <?php
-  // Dependencies
-  // ===========================================================================
+// Dependencies
+// ===========================================================================
 
-  require_once 'models/bootstrap.php';
-  require_once 'helpers/bootstrap.php';
+require_once 'models/bootstrap.php';
+require_once 'helpers/bootstrap.php';
 
-  // Authorizations
-  // ===========================================================================
+// Authorizations
+// ===========================================================================
 
-  actionRequireMethodPost();
-  actionRequireGuest();
+actionRequireMethodPost();
+actionRequireGuest();
 
-  // Manage Logic
-  // ===========================================================================
+// Manage Logic
+// ===========================================================================
 
-  $form['username'] = $_POST['user_pseudo'];
-  $form['password'] = $_POST['user_password'];
+$form['username'] = $_POST['user_pseudo'];
+$form['password'] = $_POST['user_password'];
 
-  // Try to find user by data posted
-  $user = User::findWithCredentials($form['username'], $form['password']);
+// Try to find user by data posted
+$user = User::findWithCredentials($form['username'], $form['password']);
 
-  if($user) {
-    $_SESSION['user']['user_id'] = $user->id;
-    $_SESSION['user']['user_token'] = $user->session_token;
-    flashAdd('success', "Bravo, vous êtes connecté.");
-    header('Location: /');
-    die;
-  }
+if ($user) {
+  $_SESSION['user']['user_id'] = $user->id;
+  $_SESSION['user']['user_token'] = $user->session_token;
+  flashAdd('success', "Bravo, vous êtes connecté.");
+  header('Location: /');
+  die;
+}
 
-  flashAdd('error', "Identifiants incorects !");
+flashAdd('error', "Identifiants incorects !");
 
-  // Include View
-  // ===========================================================================
+// Include View
+// ===========================================================================
 
-  // Set page title
-  $metaPageTitle = "Connexion";
+// Set page title
+$metaPageTitle = "Connexion";
 
-  // Load view
-  $actionView = "sessions/new.php";
+// Load view
+$actionView = "sessions/new.php";
 
-  // Load layout
-  include_once 'views/layouts/default.php';
-?>
+// Load layout
+include_once 'views/layouts/default.php';

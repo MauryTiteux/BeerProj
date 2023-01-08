@@ -1,39 +1,38 @@
 <?php
-  // Dependencies
-  // ===========================================================================
+// Dependencies
+// ===========================================================================
 
-  require_once 'models/bootstrap.php';
-  require_once 'helpers/bootstrap.php';
+require_once 'models/bootstrap.php';
+require_once 'helpers/bootstrap.php';
 
-  // Authorizations
-  // ===========================================================================
+// Authorizations
+// ===========================================================================
 
-  actionRequireMethodGet();
-  actionRequireAdmin();
+actionRequireMethodGet();
+actionRequireAdmin();
 
-  // Manage Logic
-  // ===========================================================================
+// Manage Logic
+// ===========================================================================
 
-  $id = $_GET['id'];
-  $beer = Beer::find($id);
+$id = $_GET['id'];
+$beer = Beer::find($id);
 
-  if($beer == null) {
-    header('Location: /admin/beers/index.php');
-    die;
-  }
+if ($beer == null) {
+  header('Location: /admin/beers/index.php');
+  die;
+}
 
-  $view['beer'] = $beer;
-  $view['form_fields'] = [ "name", "description", "alcool", "ibu", "ebc", "style_id", "format_id", "type_verre_id", "brasserie_id", "categorie_id"];
+$view['beer'] = $beer;
+$view['form_fields'] = ["name", "description", "alcool", "ibu", "ebc", "style_id", "type_verre_id"];
 
-  // Include View
-  // ===========================================================================
+// Include View
+// ===========================================================================
 
-  // Set page title
-  $metaPageTitle = "Admin - Modifier {$beer->name}";
+// Set page title
+$metaPageTitle = "Admin - Modifier {$beer->name}";
 
-  // Load view
-  $actionView = "admin/beers/show.php";
+// Load view
+$actionView = "admin/beers/show.php";
 
-  // Load layout
-  include_once 'views/layouts/default.php';
-?>
+// Load layout
+include_once 'views/layouts/default.php';

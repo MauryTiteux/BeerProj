@@ -12,6 +12,17 @@
           <?php endforeach ?>
         </select>
       </div>
+    <?php elseif ($f == "style_id") : ?>
+      <div>
+        <label for="beer_style_id">
+          <p>Style:</p>
+        </label>
+        <select id="beer_style_id" name="beer_style_id">
+          <?php foreach (BeerStyle::all() as $style) : ?>
+            <option value="<?= $style->id ?>" <?= ($style->id == $view['beer']->style_id) ? "selected" : "" ?>><?= $style->name ?></option>
+          <?php endforeach ?>
+        </select>
+      </div>
     <?php else : ?>
       <div>
         <label for="beer_<?= $f ?>">

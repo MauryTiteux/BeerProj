@@ -37,7 +37,9 @@ class User
   public static function all($items = [])
   {
     $datas = Database::all(self::TABLE_NAME);
-    foreach ($datas as $data) { array_push($items, self::populate($data)); }
+    foreach ($datas as $data) {
+      array_push($items, self::populate($data));
+    }
     return $items;
   }
 
@@ -53,7 +55,7 @@ class User
   {
     $data = Database::where(self::TABLE_NAME, 'username', $username);
     $user = $data ? self::populate($data) : null;
-    if($user && $user->authWithPassword($password)) {
+    if ($user && $user->authWithPassword($password)) {
       return $user;
     }
   }
@@ -62,7 +64,7 @@ class User
   public static function findWithToken($id, $token)
   {
     $user = self::find($id);
-    if($user && $user->session_token == $token) {
+    if ($user && $user->session_token == $token) {
       return $user;
     }
   }
@@ -141,7 +143,8 @@ class User
   // ===========================================================================
 
   // Generate a random session_token.
-  public function generateSessionToken() {
+  public function generateSessionToken()
+  {
     $this->session_token = hash("sha256", rand());
   }
 
@@ -155,5 +158,15 @@ class User
   public function authWithPassword($password)
   {
     return password_verify($password, $this->password_hash) ? true : false;
+  }
+
+  public function hasBeerInList($id) {
+    $beers = UsersBeers::fromUser($this->id);
+    foreach ($beers as $beer) {
+      if ($beer->beer_id == $id) {
+        return true;
+      }
+    }
+    return false;
   }
 }

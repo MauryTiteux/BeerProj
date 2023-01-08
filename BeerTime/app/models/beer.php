@@ -15,10 +15,7 @@ class Beer
   public $ibu = null;
   public $ebc = null;
   public $style_id = null;
-  public $format_id = null;
   public $type_verre_id = null;
-  public $brasserie_id = null;
-  public $categorie_id = null;
   public $created_at = null;
   public $modified_at = null;
 
@@ -113,7 +110,7 @@ class Beer
 
   public function setGlass($value)
   {
-    if(BeerGlass::find($value)) {
+    if (BeerGlass::find($value)) {
       $this->type_verre_id = $value;
     } else {
       $this->type_verre_id = 1;
@@ -123,5 +120,14 @@ class Beer
   public function getGlass()
   {
     return BeerGlass::find($this->type_verre_id)->name;
+  }
+
+  public function getFormats() {
+    $items = [];
+    $data = BeersFormats::beers($this->id);
+    foreach($data as $item) {
+      array_push($items, $item->getFormat());
+    }
+    return $items;
   }
 }

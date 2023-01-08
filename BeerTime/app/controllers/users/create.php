@@ -1,47 +1,46 @@
 <?php
-  // Dependencies
-  // ===========================================================================
+// Dependencies
+// ===========================================================================
 
-  require_once 'models/bootstrap.php';
-  require_once 'helpers/bootstrap.php';
+require_once 'models/bootstrap.php';
+require_once 'helpers/bootstrap.php';
 
-  // Authorizations
-  // ===========================================================================
+// Authorizations
+// ===========================================================================
 
-  actionRequireMethodPost();
-  actionRequireGuest();
+actionRequireMethodPost();
+actionRequireGuest();
 
-  // Manage Logic
-  // ===========================================================================
+// Manage Logic
+// ===========================================================================
 
-  $form['username'] = $_POST['user_username'];
-  $form['email'] = $_POST['user_email'];
-  $form['password'] = $_POST['user_password'];
+$form['username'] = $_POST['user_username'];
+$form['email'] = $_POST['user_email'];
+$form['password'] = $_POST['user_password'];
 
-  $user = new User();
-  $user->username = $form['username'];
-  $user->email = $form['email'];
-  $user->password = $form['password'];
-  if($user->isValid()) {
-    $user->create();
-    flashAdd('success', "Vous vous êtes inscrit, vous pouvez maintenant vous connecter {$user->username}");
-    header('Location: /sessions/new.php');
-    die;
-  } else {
-    foreach($user->errors as $error) {
-      flashAdd('error', $error[key($error)]);
-    }
+$user = new User();
+$user->username = $form['username'];
+$user->email = $form['email'];
+$user->password = $form['password'];
+if ($user->isValid()) {
+  $user->create();
+  flashAdd('success', "Vous vous êtes inscrit, vous pouvez maintenant vous connecter {$user->username}");
+  header('Location: /sessions/new.php');
+  die;
+} else {
+  foreach ($user->errors as $error) {
+    flashAdd('error', $error[key($error)]);
   }
+}
 
-  // Include View
-  // ===========================================================================
+// Include View
+// ===========================================================================
 
-  // Set page title
-  $metaPageTitle = "Inscription";
+// Set page title
+$metaPageTitle = "Inscription";
 
-  // Load view
-  $actionView = "users/new.php";
+// Load view
+$actionView = "users/new.php";
 
-  // Load layout
-  include_once 'views/layouts/default.php';
-?>
+// Load layout
+include_once 'views/layouts/default.php';

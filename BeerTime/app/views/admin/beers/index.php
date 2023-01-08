@@ -1,5 +1,5 @@
 <h2>Les bières</h2>
-<table border="4">
+<table class="table">
   <tr>
     <td><strong>Nom</strong></td>
     <td><strong>Description</strong></td>
@@ -15,11 +15,11 @@
         <td><?= $beer->description ?></td>
         <td><?= $beer->alcool ?></td>
         <td><?= $beer->getGlass() ?></td>
-        <td><a href="/admin/beers/show.php?id=<?= $beer->id ?>">Modifier</a></td>
-        <td><a href="/admin/beers/destroy.php?id=<?= $beer->id ?>">Supprimer</a></td>
+        <td><a class="btn" href="/admin/beers/show.php?id=<?= $beer->id ?>">Modifier</a></td>
+        <td><a class="btn" href="/admin/beers/destroy.php?id=<?= $beer->id ?>">Supprimer</a></td>
       </tr>
     <?php endforeach ?>
   </tbody>
 </table>
-<a href="/admin/beers/new.php">Ajouter une bière.</a>
+<a class="btn" href="/admin/beers/new.php">Ajouter une bière.</a>
 </ul>
