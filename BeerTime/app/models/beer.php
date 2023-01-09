@@ -18,6 +18,7 @@ class Beer
   public $type_verre_id = null;
   public $created_at = null;
   public $modified_at = null;
+  public $fermentation_id = null;
 
   // Abstract properties.
   public $errors = null;
@@ -129,5 +130,19 @@ class Beer
       array_push($items, $item->getFormat());
     }
     return $items;
+  }
+
+  public function setFermentation($value)
+  {
+    if (BeerFermentation::find($value)) {
+      $this->fermentation_id = $value;
+    } else {
+      $this->fermentation_id = 1;
+    }
+  }
+
+  public function getFermentation()
+  {
+    return BeerFermentation::find($this->fermentation_id)->name;
   }
 }

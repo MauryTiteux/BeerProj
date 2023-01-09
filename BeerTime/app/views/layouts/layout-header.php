@@ -18,6 +18,7 @@
       <li><a href="/admin/glasses/index.php">Gérer les types de verre</a></li>
       <li><a href="/admin/styles/index.php">Gérer les styles</a></li>
       <li><a href="/admin/formats/index.php">Gérer les formats</a></li>
+      <li><a href="/admin/fermentation/index.php">Gérer les fermentations</a></li>
       <li><a href="/admin/beers_formats/index.php">Gérer les associations</a></li>
     <?php endif ?>
     <li><a href="/sessions/destroy.php">Deconnecter</a></li>

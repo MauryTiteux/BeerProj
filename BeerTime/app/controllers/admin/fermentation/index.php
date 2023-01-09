@@ -14,25 +14,16 @@ actionRequireAdmin();
 // Manage Logic
 // ===========================================================================
 
-$id = $_GET['id'];
-$beer = Beer::find($id);
-
-if ($beer == null) {
-  header('Location: /admin/beers/index.php');
-  die;
-}
-
-$view['beer'] = $beer;
-$view['form_fields'] = ["name", "description", "alcool", "ibu", "ebc", "style_id", "type_verre_id", "fermentation_id"];
+$view['beer_fermentation'] = BeerFermentation::all();
 
 // Include View
 // ===========================================================================
 
 // Set page title
-$metaPageTitle = "Admin - Modifier {$beer->name}";
+$metaPageTitle = "Admin - Liste des fermentation";
 
 // Load view
-$actionView = "admin/beers/show.php";
+$actionView = "admin/fermentation/index.php";
 
 // Load layout
 include_once 'views/layouts/default.php';

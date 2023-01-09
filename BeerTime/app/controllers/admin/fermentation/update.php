@@ -15,27 +15,26 @@ actionRequireAdmin();
 // ===========================================================================
 
 $id = $_GET['id'];
-$beer = Beer::find($id);
+$beer_fermentation = BeerFermentation::find($id);
 
-echo $_POST["beer_type_verre_id"];
-if ($beer == null) {
-  header('Location: /admin/beers/index.php');
+if ($beer_fermentation == null) {
+  header('Location: /admin/fermentation/index.php');
   die;
 }
 
-$view['form_fields'] = ["name", "description", "alcool", "ibu", "ebc", "style_id", "type_verre_id", "fermentation_id"];
+$view['form_fields'] = ["name"];
 
 foreach ($view['form_fields'] as $f) {
-  $beer->$f = $_POST["beer_{$f}"];
+  $beer_fermentation->$f = $_POST["beer_fermentation_{$f}"];
 }
 
-if ($beer->isValid()) {
-  $beer->save();
-  flashAdd('success', "La bière a été modifiée.");
+if ($beer_fermentation->isValid()) {
+  $beer_fermentation->save();
+  flashAdd('success', "La fermentation a été modifiée.");
 } else {
-  foreach ($beer->errors as $error) {
+  foreach ($beer_fermentation->errors as $error) {
     flashAdd('error', $error[key($error)]);
   }
 }
-header('Location: /admin/beers/index.php');
+header('Location: /admin/fermentation/index.php');
 die;

@@ -1,16 +1,15 @@
 <?php
-class BeersFormats
+class BeerFermentation
 {
   // Variables
   // ===========================================================================
 
   // Database table.
-  const TABLE_NAME = "beer_formats";
+  const TABLE_NAME = "beer_fermentation";
 
   // Object properties.
   public $id = null;
-  public $beer_id = 1;
-  public $format_id = null;
+  public $name = null;
 
   // Abstract properties.
   public $errors = null;
@@ -34,7 +33,7 @@ class BeersFormats
   // Return all records.
   public static function all($items = [])
   {
-    $datas = Database::all(self::TABLE_NAME, "beer_id");
+    $datas = Database::all(self::TABLE_NAME);
     foreach ($datas as $data) {
       array_push($items, self::populate($data));
     }
@@ -48,44 +47,15 @@ class BeersFormats
     return $data ? self::populate($data) : null;
   }
 
-  public static function beers($id, $items = []) {
-    $data = self::all();
-    foreach($data as $item) {
-      $item = self::populate($item);
-      if($item->beer_id == $id) {
-        array_push($items, $item);
-      }
-    }
-    return $items;
-  }
-
   // Validations & persistence.
   // ===========================================================================
 
-  // Validate if beer exist.
-  private function validateBeer()
+  // Check if unique name.
+  private function validateUniqueName()
   {
-    $data = Beer::find($this->beer_id);
-    if (!$data) {
-      array_push($this->errors, ['beer_absent' => "La bière n'existe pas."]);
-    }
-  }
-
-  // Validate if format exist.
-  private function validateFormat()
-  {
-    $data = Format::find($this->format_id);
-    if (!$data) {
-      array_push($this->errors, ['beer_absent' => "La bière n'existe pas."]);
-    }
-  }
-
-  private function validateUnique() {
-    $data = BeersFormats::all();
-    foreach($data as $item) {
-      if($item->beer_id == $this->beer_id && $item->format_id == $this->format_id) {
-        array_push($this->errors, ['beer_unique' => "l'association existe déjà."]);
-      }
+    $data = Database::where(self::TABLE_NAME, 'name', $this->name);
+    if ($data && $data->id != $this->id) {
+      array_push($this->errors, ['unique_name' => 'Une fermentation possède déjà ce nom.']);
     }
   }
 
@@ -93,9 +63,7 @@ class BeersFormats
   public function isValid()
   {
     $this->errors = [];
-    $this->validateBeer();
-    $this->validateFormat();
-    $this->validateUnique();
+    $this->validateUniqueName();
     return empty($this->errors) ? true : false;
   }
 
@@ -128,11 +96,5 @@ class BeersFormats
   // Functions
   // ===========================================================================
 
-  public function getFormat() {
-    return Format::find($this->format_id);
-  }
-
-  public function getBeer() {
-    return Beer::find($this->beer_id);
-  }
+  // No functions.
 }

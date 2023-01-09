@@ -7,3 +7,4 @@ require_once 'models/database.php';
 require_once 'models/format.php';
 require_once 'models/user.php';
 require_once 'models/usersBeers.php';
+require_once 'models/beerFermentation.php';
