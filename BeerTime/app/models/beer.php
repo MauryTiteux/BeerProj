@@ -17,7 +17,6 @@ class Beer
   public $style_id = null;
   public $type_verre_id = null;
   public $created_at = null;
-  public $modified_at = null;
   public $fermentation_id = null;
 
   // Abstract properties.
@@ -81,8 +80,6 @@ class Beer
   public function create()
   {
     if ($this->isValid()) {
-      $this->created_at = date('Y-m-d H:i:s');
-      $this->modified_at = date('Y-m-d H:i:s');
       $datas = get_object_vars($this);
       unset($datas['errors']);
       Database::insert(self::TABLE_NAME, $datas);

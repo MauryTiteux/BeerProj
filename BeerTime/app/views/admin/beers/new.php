@@ -23,7 +23,7 @@
           <?php endforeach ?>
         </select>
       </div>
-      <?php elseif ($f == "fermentation_id") : ?>
+    <?php elseif ($f == "fermentation_id") : ?>
       <div>
         <label for="beer_fermentation_id">
           <p>Fermentation de la bière:</p>

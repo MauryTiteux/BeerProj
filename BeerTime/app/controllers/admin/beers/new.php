@@ -17,7 +17,7 @@ actionRequireAdmin();
 $beer = new Beer();
 
 $view['beer'] = $beer;
-$view['form_fields'] = ["name", "description", "alcool", "ibu", "ebc", "style_id", "type_verre_id", "fermentation_id"];
+$view['form_fields'] = ["name", "description", "alcool", "ibu", "ebc", "style_id", "type_verre_id", "fermentation_id","created_at"];
 
 // Include View
 // ===========================================================================

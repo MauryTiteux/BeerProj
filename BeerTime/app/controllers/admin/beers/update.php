@@ -23,7 +23,7 @@ if ($beer == null) {
   die;
 }
 
-$view['form_fields'] = ["name", "description", "alcool", "ibu", "ebc", "style_id", "type_verre_id", "fermentation_id"];
+$view['form_fields'] = ["name", "description", "alcool", "ibu", "ebc", "style_id", "type_verre_id", "fermentation_id", "created_at"];
 
 foreach ($view['form_fields'] as $f) {
   $beer->$f = $_POST["beer_{$f}"];
