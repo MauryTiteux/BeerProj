@@ -16,7 +16,7 @@ actionRequireAdmin();
 
 $beer_format = new BeersFormats();
 
-$view['beer_format'] = $format;
+$view['beer_format'] = $beer_format;
 $view['form_fields'] = ["beer_id", "format_id"];
 
 // Include View

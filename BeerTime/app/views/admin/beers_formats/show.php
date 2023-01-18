@@ -19,7 +19,7 @@
         </label>
         <select id="beer_format_format_id" name="beer_format_format_id">
           <?php foreach (Format::all() as $format) : ?>
-            <option value="<?= $format->id ?>" <?= ($format->id == $view['beer_format']->format_id) ? "selected" : "" ?>><?= $format->name ?></option>
+            <option value="<?= $formats->id ?>" <?= ($format->id == $view['beer_format']->format_id) ? "selected" : "" ?>><?= $format->name ?></option>
           <?php endforeach ?>
         </select>
       </div>

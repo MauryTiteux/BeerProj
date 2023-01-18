@@ -5,7 +5,7 @@ class BeersFormats
   // ===========================================================================
 
   // Database table.
-  const TABLE_NAME = "beer_formats";
+  const TABLE_NAME = "beer_format";
 
   // Object properties.
   public $id = null;
