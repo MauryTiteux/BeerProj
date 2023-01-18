@@ -17,6 +17,10 @@ actionRequireAdmin();
 $beer = new Beer();
 $view['form_fields'] = $view['form_fields'] = ["name", "description", "alcool", "ibu", "ebc", "style_id", "type_verre_id", "fermentation_id", "created_at"];
 
+$_POST["beer_alcool"]= str_ireplace(",", ".",$_POST["beer_alcool"]);
+$_POST["beer_name"]= str_ireplace("'", "\'",$_POST["beer_name"]);
+$_POST["beer_description"]= str_ireplace("'", "\'",$_POST["beer_description"]);
+
 foreach ($view['form_fields'] as $f) {
   $beer->$f = $_POST["beer_{$f}"];
 }

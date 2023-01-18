@@ -11,9 +11,9 @@
   <tbody>
     <?php foreach ($view['beers'] as $beer) : ?>
       <tr>
-        <td><?= $beer->name ?></td>
-        <td><?= $beer->description ?></td>
-        <td><?= $beer->alcool ?></td>
+        <td><?= $beer->name = str_ireplace("\'", "'",$beer->name); ?></td>
+        <td><?= $beer->description = str_ireplace("\'", "'",$beer->description);?></td>
+        <td><?= $beer->alcool = str_ireplace(".", ",",$beer->alcool);?></td>
         <td><?= $beer->getGlass() ?></td>
         <td><a class="btn" href="/admin/beers/show.php?id=<?= $beer->id ?>">Modifier</a></td>
         <td><a class="btn" href="/admin/beers/destroy.php?id=<?= $beer->id ?>">Supprimer</a></td>

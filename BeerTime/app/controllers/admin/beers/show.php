@@ -24,6 +24,9 @@ if ($beer == null) {
 
 $view['beer'] = $beer;
 $view['form_fields'] = ["name", "description", "alcool", "ibu", "ebc", "style_id", "type_verre_id", "fermentation_id", "created_at"];
+$beer["beer_alcool"]= str_ireplace(",", ".",$beer["beer_alcool"]);
+$beer["beer_name"]= str_ireplace("'", "\'",$beer["beer_name"]);
+$beer["beer_description"]= str_ireplace("'", "\'",$beer["beer_description"]);
 
 // Include View
 // ===========================================================================
