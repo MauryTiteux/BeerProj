@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : dim. 08 jan. 2023 à 14:22
+-- Généré le : mer. 18 jan. 2023 à 17:24
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `database_beers`
 --
-CREATE DATABASE IF NOT EXISTS `database_beers` DEFAULT CHARACTER SET latin1 COLLATE latin1_general_cs;
-USE `database_beers`;
 
 -- --------------------------------------------------------
 
@@ -40,12 +38,12 @@ CREATE TABLE IF NOT EXISTS `beers` (
   `style_id` int(11) DEFAULT '1',
   `type_verre_id` int(11) DEFAULT '1',
   `fermentation_id` int(11) DEFAULT '1',
-  `picture` varchar(255) COLLATE latin1_general_cs NOT NULL,
+  `picture` varchar(255) COLLATE latin1_general_cs DEFAULT NULL,
   `created_at` int(4) DEFAULT NULL,
   `date_add` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
 
 --
 -- Déchargement des données de la table `beers`
@@ -55,7 +53,8 @@ INSERT INTO `beers` (`id`, `name`, `description`, `alcool`, `ibu`, `ebc`, `style
 (1, 'Delta IPA', 'Ce n\'est pas une biÃ¨re belge comme les autres. Ses houblons aromatiques apportent Ã  la Delta IPA des notes de litchi et de fruit de la passion avant de vous surprendre avec une amertume franche et dÃ©saltÃ©rante. La levure Saison apporte sa touche belge avec une touche Ã©picÃ©e et sÃ¨che.\r\n\r\nLa Delta IPA est notre premiÃ¨re biÃ¨re. LancÃ©e en 2013 alors que les IPA Ã©taient encore inconnues en Belgique. Elle est profondÃ©ment impliquÃ©e dans le processus de cocrÃ©ation, Ã©lue par plus de 850 Bruxellois Ã  l\'Ã©tÃ© 2013, contre trois autres prototypes (Alpha, Beta et Gamma). Aujourd\'hui, elle reste la star parmi les All-Stars !\r\n\r\nDÃ©couvrez notre interprÃ©tation exotique de Bruxelles !', '6.0', 45, 18, 1, 6, 1, '../ressources/img/bieres/Photo_Delta IPA.jpg', 2013, '2023-01-08 13:22:30'),
 (2, 'l\'Orval', 'L\'Orval, une trappiste douce-amàre Ã  la saveur évolutive ! Une vraie référence belge !', '6.2', 45, 27, 3, 5, 4, '../ressources/img/bieres/Photo_Orval.jpg', 1931, '2023-01-08 13:31:10'),
 (3, 'Duvel', 'Duvel est une biÃ¨re naturelle avec une amertume subtile, un arÃ´me raffinÃ© et un caractÃ¨re houblonnÃ© prononcÃ©. La refermentation en bouteille et une longue maturation garantissent un style pur, un pÃ©tillant dÃ©licat et un agrÃ©able goÃ»t alcool doux.', '8.5', 35, 8, 2, 2, 1, '../ressources/img/bieres/Photo_Duvel.jpeg', 1923, '2023-01-08 13:43:35'),
-(4, 'Bush Caractère', 'CreÌeÌe en 1933 sous le nom de Â«BushBeerÂ», elle est une des plus anciennes bieÌ€res speÌciales belges et le fleuron de la Brasserie Dubuisson.', '12.0', 25, 30, 2, 5, 1, '../ressources/img/bieres/Photo_Bush Caractère.png', 1933, '2023-01-08 15:13:40');
+(4, 'Bush Caractère', 'CreÌeÌe en 1933 sous le nom de Â«BushBeerÂ», elle est une des plus anciennes bieÌ€res speÌciales belges et le fleuron de la Brasserie Dubuisson.', '12.0', 25, 30, 2, 5, 1, '../ressources/img/bieres/Photo_Bush Caractère.png', 1933, '2023-01-08 15:13:40'),
+(5, 'Grosse Bertha', 'Grosse Bertha est le résultat du mÃ©lange entre les recettes d\'une tripel et d\'une hefeweizen. Sa levure allemande dÃ©gage des arÃ´mes de banane et de clou de girofle. Construit sur un mÃ©lange d\'orge brassicole et de blÃ©, il est voluptueux Ã  souhait.\r\n\r\nElle a remportÃ© notre Ã©lection en 2014 entre trois autres biÃ¨res de blÃ©.\r\n\r\nBref, c\'est l\'Oktoberfest Ã  Bruxelles !', '7.0', 20, 6, 4, 6, 1, '../ressources/img/bieres/Photo_Grosse Bertha.jpg', 2014, '2023-01-09 20:03:54');
 
 -- --------------------------------------------------------
 
@@ -69,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `beer_brewery` (
   `beer_id` int(11) NOT NULL,
   `brewery_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
 
 --
 -- Déchargement des données de la table `beer_brewery`
@@ -79,7 +78,8 @@ INSERT INTO `beer_brewery` (`id`, `beer_id`, `brewery_id`) VALUES
 (1, 1, 1),
 (2, 2, 4),
 (3, 3, 2),
-(4, 4, 3);
+(4, 4, 3),
+(5, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -117,7 +117,7 @@ CREATE TABLE IF NOT EXISTS `beer_format` (
   `format_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDFor` (`format_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
 
 --
 -- Déchargement des données de la table `beer_format`
@@ -133,7 +133,9 @@ INSERT INTO `beer_format` (`id`, `beer_id`, `format_id`) VALUES
 (7, 3, 20),
 (8, 4, 3),
 (9, 4, 13),
-(10, 4, 20);
+(10, 4, 20),
+(11, 5, 3),
+(13, 5, 20);
 
 -- --------------------------------------------------------
 
@@ -146,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `beer_glasses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(15) COLLATE latin1_general_cs NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
 
 --
 -- Déchargement des données de la table `beer_glasses`
@@ -177,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `beer_styles` (
   `name` varchar(50) COLLATE latin1_general_cs NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `Style` (`name`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
 
 --
 -- Déchargement des données de la table `beer_styles`
@@ -186,7 +188,8 @@ CREATE TABLE IF NOT EXISTS `beer_styles` (
 INSERT INTO `beer_styles` (`id`, `name`) VALUES
 (1, 'Saison IPA'),
 (2, 'Belge Forte'),
-(3, 'Trappiste');
+(3, 'Trappiste'),
+(4, 'Hefeweizen belge');
 
 -- --------------------------------------------------------
 
