@@ -1,6 +1,6 @@
 <header class="navbar">
   <section class="navbar-section">
-    <a href="..." class="navbar-brand mr-2">Belgians's Beers</a>
+    <a href="/" class="navbar-brand mr-2">Belgians's Beers</a>
   </section>
   <section class="navbar-section">
   </section>
